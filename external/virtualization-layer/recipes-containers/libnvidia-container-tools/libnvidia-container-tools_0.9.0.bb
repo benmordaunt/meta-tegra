@@ -7,8 +7,6 @@ kernel subsystems and is designed to be agnostic of the container runtime. \
 "
 HOMEPAGE = "https://github.com/NVIDIA/libnvidia-container"
 
-COMPATIBLE_MACHINE = "(tegra)"
-
 DEPENDS = " \
     coreutils-native \
     pkgconfig-native \
@@ -31,19 +29,14 @@ NVIDIA_MODPROBE_VERSION = "396.51"
 ELF_TOOLCHAIN_VERSION = "0.7.1"
 LIBTIRPC_VERSION = "1.1.4"
 
-SRC_URI = "git://github.com/NVIDIA/libnvidia-container.git;protocol=https;name=libnvidia;branch=jetson \
-           git://github.com/NVIDIA/nvidia-modprobe.git;protocol=https;branch=main;name=modprobe;destsuffix=git/deps/src/nvidia-modprobe-${NVIDIA_MODPROBE_VERSION} \
-           file://0001-Makefile-Fix-RCP-flags-and-change-path-definitions-s.patch \
-           file://0002-common.mk-Set-JETSON-variable-if-not-set-before.patch \
-           file://0003-Fix-mapping-of-library-paths-for-jetson-mounts.patch \
-           file://0004-Fix-build.h-generation-for-cross-builds.patch \
-           "
+SRC_URI = "git://github.com/NVIDIA/libnvidia-container.git;protocol=https;name=libnvidia;branch=master \
+           git://github.com/NVIDIA/nvidia-modprobe.git;protocol=https;branch=main;name=modprobe;destsuffix=git/deps/src/nvidia-modprobe-${NVIDIA_MODPROBE_VERSION"
 
 SRC_URI[modprobe.md5sum] = "f82b649e7a0f1d1279264f9494e7cf43"
 SRC_URI[modprobe.sha256sum] = "25bc6437a384be670e9fd76ac2e5b9753517e23eb16e7fa891b18537b70c4b20"
 
 
-SRCREV_libnvidia = "09df17a2424704c1e4af310d3ce51fe475ba292a"
+SRCREV_libnvidia = "f37bb387ad05f6e501069d99e4135a97289faf1f"
 # Nvidia modprobe version 396.51
 SRCREV_modprobe = "d97c08af5061f1516fb2e3a26508936f69d6d71d"
 
@@ -62,7 +55,7 @@ def build_date(d):
 
 # We need to link with libelf, otherwise we need to
 # include bmake-native which does not exist at the moment.
-EXTRA_OEMAKE = "EXCLUDE_BUILD_FLAGS=1 PLATFORM=${HOST_ARCH} JETSON=TRUE WITH_LIBELF=yes ${@build_date(d)} ${PACKAGECONFIG_CONFARGS}"
+EXTRA_OEMAKE = "EXCLUDE_BUILD_FLAGS=1 PLATFORM=${HOST_ARCH} WITH_LIBELF=yes ${@build_date(d)} ${PACKAGECONFIG_CONFARGS}"
 
 CFLAGS_prepend = " -I=/usr/include/tirpc "
 
