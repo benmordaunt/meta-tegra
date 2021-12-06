@@ -19,7 +19,7 @@ DEPENDS = " \
 "
 LICENSE = "BSD-3-Clause & GPLv3 & Proprietary"
 
-CURL_CA_BUNDLE=${STAGING_DIR_NATIVE}/etc/ssl/certs/ca-certificates.crt
+CURL_CA_BUNDLE = "${STAGING_DIR_NATIVE}/etc/ssl/certs/ca-certificates.crt"
 export CURL_CA_BUNDLE
 
 LIC_FILES_CHKSUM = "\
