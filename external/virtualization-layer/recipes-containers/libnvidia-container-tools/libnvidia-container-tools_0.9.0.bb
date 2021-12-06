@@ -36,8 +36,7 @@ LIBTIRPC_VERSION = "1.1.4"
 
 SRC_URI = "git://github.com/NVIDIA/libnvidia-container.git;protocol=https;name=libnvidia;branch=master \
            git://github.com/NVIDIA/nvidia-modprobe.git;protocol=https;branch=main;name=modprobe;destsuffix=git/deps/src/nvidia-modprobe-${NVIDIA_MODPROBE_VERSION} \
-           file://0001-Makefile-Fix-RCP-flags-and-change-path-definitions-s.patch \
-           file://0004-Fix-build.h-generation-for-cross-builds.patch \
+           file://0001-Make-assignments-weak.patch \
 "
 
 SRC_URI[modprobe.md5sum] = "f82b649e7a0f1d1279264f9494e7cf43"
