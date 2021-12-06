@@ -30,7 +30,7 @@ ELF_TOOLCHAIN_VERSION = "0.7.1"
 LIBTIRPC_VERSION = "1.1.4"
 
 SRC_URI = "git://github.com/NVIDIA/libnvidia-container.git;protocol=https;name=libnvidia;branch=master \
-           git://github.com/NVIDIA/nvidia-modprobe.git;protocol=https;branch=main;name=modprobe;destsuffix=git/deps/src/nvidia-modprobe-${NVIDIA_MODPROBE_VERSION"
+           git://github.com/NVIDIA/nvidia-modprobe.git;protocol=https;branch=main;name=modprobe;destsuffix=git/deps/src/nvidia-modprobe-${NVIDIA_MODPROBE_VERSION}"
 
 SRC_URI[modprobe.md5sum] = "f82b649e7a0f1d1279264f9494e7cf43"
 SRC_URI[modprobe.sha256sum] = "25bc6437a384be670e9fd76ac2e5b9753517e23eb16e7fa891b18537b70c4b20"
