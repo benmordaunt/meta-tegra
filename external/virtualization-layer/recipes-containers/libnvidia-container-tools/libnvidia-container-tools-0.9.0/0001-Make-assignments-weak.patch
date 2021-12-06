@@ -1,5 +1,5 @@
 diff --git a/Makefile b/Makefile
-index 92d6f6e..36aef75 100644
+index 92d6f6e..a6ee1bf 100644
 --- a/Makefile
 +++ b/Makefile
 @@ -23,14 +23,14 @@ WITH_SECCOMP ?= yes
@@ -25,3 +25,43 @@ index 92d6f6e..36aef75 100644
  
  export PKG_DIR     ?= $(CURDIR)/pkg
  export SRCS_DIR    ?= $(CURDIR)/src
+@@ -126,12 +126,12 @@ LIB_PKGCFG  := $(LIB_NAME).pc
+ ##### Flags definitions #####
+ 
+ # Common flags
+-CPPFLAGS := -D_GNU_SOURCE -D_FORTIFY_SOURCE=2 $(CPPFLAGS)
++CPPFLAGS := -D_GNU_SOURCE -D_FORTIFY_SOURCE=2 -g3 -DHOST_LIBDIR=$(libdir) $(CPPFLAGS)
+ CFLAGS   := -std=gnu11 -O2 -g -fdata-sections -ffunction-sections -fstack-protector -fno-strict-aliasing -fvisibility=hidden \
+             -Wall -Wextra -Wcast-align -Wpointer-arith -Wmissing-prototypes -Wnonnull \
+             -Wwrite-strings -Wlogical-op -Wformat=2 -Wmissing-format-attribute -Winit-self -Wshadow \
+             -Wstrict-prototypes -Wunreachable-code -Wconversion -Wsign-conversion \
+-            -Wno-unknown-warning-option -Wno-format-extra-args -Wno-gnu-alignof-expression $(CFLAGS)
++            -Wno-unknown-warning-option -Wno-format-extra-args -Wno-gnu-alignof-expression -I=/usr/include/tirpc $(CFLAGS) 
+ LDFLAGS  := -Wl,-zrelro -Wl,-znow -Wl,-zdefs -Wl,--gc-sections $(LDFLAGS)
+ LDLIBS   := $(LDLIBS)
+ 
+@@ -140,7 +140,7 @@ LIB_CPPFLAGS       = -DNV_LINUX -isystem $(DEPS_DIR)$(includedir) -include $(BUI
+ LIB_CFLAGS         = -fPIC
+ LIB_LDFLAGS        = -L$(DEPS_DIR)$(libdir) -shared -Wl,-soname=$(LIB_SONAME)
+ LIB_LDLIBS_STATIC  = -l:libnvidia-modprobe-utils.a
+-LIB_LDLIBS_SHARED  = -ldl -lcap
++LIB_LDLIBS_SHARED  = -ldl -lcap -ltirpc
+ ifeq ($(WITH_LIBELF), yes)
+ LIB_CPPFLAGS       += -DWITH_LIBELF
+ LIB_LDLIBS_SHARED  += -lelf
+@@ -238,12 +238,12 @@ static: $(LIB_STATIC)($(LIB_STATIC_OBJ))
+ deps: export DESTDIR:=$(DEPS_DIR)
+ deps: $(LIB_RPC_SRCS) $(BUILD_DEFS)
+ 	$(MKDIR) -p $(DEPS_DIR)
+-	$(MAKE) -f $(MAKE_DIR)/nvidia-modprobe.mk install
++	$(MAKE) -f $(MAKE_DIR)/nvidia-modprobe.mk DESTDIR=$(DEPS_DIR) install
+ ifeq ($(WITH_LIBELF), no)
+-	$(MAKE) -f $(MAKE_DIR)/elftoolchain.mk install
++	$(MAKE) -f $(MAKE_DIR)/elftoolchain.mk DESTDIR=$(DEPS_DIR) install
+ endif
+ ifeq ($(WITH_TIRPC), yes)
+-	$(MAKE) -f $(MAKE_DIR)/libtirpc.mk install
++	$(MAKE) -f $(MAKE_DIR)/libtirpc.mk DESTDIR=$(DEPS_DIR) install
+ endif
+ 
+ install: all
