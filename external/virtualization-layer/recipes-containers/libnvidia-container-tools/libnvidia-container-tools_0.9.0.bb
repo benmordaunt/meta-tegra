@@ -14,7 +14,7 @@ DEPENDS = " \
     elfutils \
     libtirpc \
     ldconfig-native \
-    curl
+    curl \
 "
 LICENSE = "BSD-3-Clause & GPLv3 & Proprietary"
 
