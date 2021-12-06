@@ -19,7 +19,7 @@ DEPENDS = " \
 LICENSE = "BSD-3-Clause & GPLv3 & Proprietary"
 
 LIC_FILES_CHKSUM = "\
-    file://LICENSE;md5=06cff45c51018e430083a716510821b7 \
+    file://LICENSE;md5=3b83ef96387f14655fc854ddc3c6bd57 \
     file://COPYING;md5=1ebbd3e34237af26da5dc08a4e440464 \
     file://COPYING.LESSER;md5=3000208d539ec061b899bce1d9ce9404 \
 "
