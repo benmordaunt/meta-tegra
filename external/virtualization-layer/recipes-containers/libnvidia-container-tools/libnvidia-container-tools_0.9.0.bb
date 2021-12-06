@@ -36,7 +36,7 @@ SRC_URI[modprobe.md5sum] = "f82b649e7a0f1d1279264f9494e7cf43"
 SRC_URI[modprobe.sha256sum] = "25bc6437a384be670e9fd76ac2e5b9753517e23eb16e7fa891b18537b70c4b20"
 
 
-SRCREV_libnvidia = "861b1a31b3cb359b1b472bf7c76af9899a8d363a"
+SRCREV_libnvidia = "f37bb387ad05f6e501069d99e4135a97289faf1f"
 # Nvidia modprobe version 396.51
 SRCREV_modprobe = "d97c08af5061f1516fb2e3a26508936f69d6d71d"
 
